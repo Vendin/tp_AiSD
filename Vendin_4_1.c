@@ -11,7 +11,7 @@ class str {
   str();
   ~str() {
      delete [] buffer;
-}
+  }
   void push_back(int A);
   int pop_front();
 };
