@@ -37,7 +37,7 @@ int str::pop_front() {
 }
 
 void viv(bool l ) {
-  if (l== 0) {
+  if (l == 0) {
     std::cout << "YES";
   } else {
     std::cout << "NO";
