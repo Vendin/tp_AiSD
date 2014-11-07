@@ -110,5 +110,5 @@ int main(void) {
   cout << w-1;
   delete [] had;
   return 0;
-}
+} 
 
