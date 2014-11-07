@@ -82,7 +82,7 @@ template <class X> void heap_insert(X *a, int n, X x) {
   a[n+1] = x;
   for (int i = n+1; i > 1;) {
     if (a[i] > a[i/2]) {
-      swap(a[i], a[i/2]);
+      swap(a[i], a[i/2]); 
       i = i/2;
     } else {
       break;
