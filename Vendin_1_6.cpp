@@ -11,7 +11,7 @@ class BinaryTree {
     for( int q = 0; q < raz; ++q){
       cin >> buffer[q];
     }
-    for( int i = raz /2 -1; i >= 0; --i ) {
+    for( int i = raz / 2 -1; i >= 0; --i ) {
       SiftDown(i);
     }
   }
