@@ -21,7 +21,6 @@ void sort_insert(int *arr, int n) {
     arr[j] = temp;
     }
   }
-  
 int main() {
   std::vector<int> mas;
   while (1) {
