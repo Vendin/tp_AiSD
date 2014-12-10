@@ -30,20 +30,19 @@ class BinaryTree {
 
 void BinaryTree::SiftDown(int i) {
   for(;;) {
-  int left = 2 * i + 1;
-  int right = 2 * i + 2;
-  int largest = i;
-  if( left < raz && buffer[left] > buffer[i] )
-  largest = left;
-  if( right < raz && buffer[right] > buffer[largest] )
-  largest = right;
-  if(largest == i ){
-    break;
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
+    int largest = i;
+    if( left < raz && buffer[left] > buffer[i] )
+      largest = left;
+    if( right < raz && buffer[right] > buffer[largest] )
+      largest = right;
+    if(largest == i ){
+      break;
   }
     std::swap(buffer[i], buffer[largest] );
     this->SiftDown(largest );
   }
-  
 }
 
 void BinaryTree::SiftUp(int index) {
