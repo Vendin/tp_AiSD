@@ -31,7 +31,7 @@ int main() {
     std::cin >> B[j];
   }
   for (int v = 0; v < m; v++) {
-    std::cout << " " << binary(A,n,B[v]);
+    std::cout << binary(A,n,B[v]) << " ";
   }
   std::cout << std::endl;
   return 0;
