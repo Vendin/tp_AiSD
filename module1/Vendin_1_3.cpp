@@ -1,27 +1,19 @@
 #include <iostream>
 
 int binary(int *A, int n, int k) {
-  int left = 0, right = n, mid;
-  while (left <= right){
-	  mid = left + (right - left) / 2;
-	  if (k < A[mid]) {
-		  if((k <= A[mid] && k > A[mid-1]) || (k < A[mid] && mid == 0)) {
-		    return mid;
-      }
+	int left = 0, right = n, mid;
+  while (left <= right) {
+  	mid = left + (right - left) / 2;
+		if (k < A[mid]) {
+			if((k <= A[mid] && k > A[mid-1]) || (k < A[mid] && mid == 0)) { return mid; }
 		 right = mid - 1;
-    }
-    else
-    {
-      if (k > A[mid]) {
+    } else {
+    	if (k > A[mid]) {
         if(k >= A[mid] && k < A[mid-1]) {
-		      return mid;
+		    	return mid;
 		    }
 		    left=mid+1;
-      }
-		  else
-		  {
-        return mid;
-      }
+      } else { return mid; }
 		}
 	}
   return n;
