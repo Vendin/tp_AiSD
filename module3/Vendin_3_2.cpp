@@ -47,11 +47,7 @@ int main (void) {
 	Bin = new CBinaryNode<int>*[N];
 	for (int i = 0; i < N; ++i) {
 		Bin[i] = new CBinaryNode<int>();
-	}
-	for (int i = 0; i < N; ++i) {
 		cin >> Bin[i]->data;
-	}
-	for (int i = 1; i < N; ++i) {
 		insert (Bin[0], Bin[i]);
 	}
 
