@@ -3,15 +3,14 @@
 #include <iostream>
 using namespace std;
 
-struct Node_t;
-unsigned int Insert(vector<Node_t> *&table, Node_t elem);
-typedef string key_t;
+struct Node;
+unsigned int Insert(vector<Node> *&table, Node elem);
 
-struct Node_t {
-    Node_t(const key_t &key = "") : state(nil) {
+struct Node {
+    Node(const string &key = "") : state(nil) {
         this->key = key;
     }
-    key_t key;
+    string key;
     
     typedef enum {
         nil = 0,
@@ -22,7 +21,7 @@ struct Node_t {
 };
 
 
-size_t Hash_only(const key_t &key) {
+size_t Hash_only(const string &key) {
     size_t c = 12343;
     size_t a = 31247;
     size_t b = 42589;
@@ -40,15 +39,15 @@ size_t Hash_only(const key_t &key) {
 }
 
 
-size_t Hash(const key_t &key, unsigned int i, unsigned int M) {
+size_t Hash(const string &key, unsigned int i, unsigned int M) {
     return (Hash_only(key) % M + i % M + (i % M)*(i % M)) % M;
 }
 
 
-void Resize(vector<Node_t> *&table) {
-    vector<Node_t> *newtable = new vector<Node_t>(table->size() * 2);
+void Resize(vector<Node> *&table) {
+    vector<Node> *newtable = new vector<Node>(table->size() * 2);
     for (unsigned int i = 0; i < table->size(); ++i) {
-        if ((*table)[i].state == Node_t::used)
+        if ((*table)[i].state == Node::used)
             Insert(newtable, (*table)[i]);
     }
     delete table;
@@ -56,12 +55,12 @@ void Resize(vector<Node_t> *&table) {
 }
 
 
-unsigned int Insert(vector<Node_t> *&table, Node_t elem) {
+unsigned int Insert(vector<Node> *&table, Node elem) {
     for (unsigned int i = 0; i < table->size(); ++i) {
         int j = Hash(elem.key, i, table->size());
-        if ((*table)[j].state == Node_t::nil || (*table)[j].state == Node_t::deleted) {
+        if ((*table)[j].state == Node::nil || (*table)[j].state == Node::deleted) {
             (*table)[j] = elem;
-            (*table)[j].state = Node_t::used;
+            (*table)[j].state = Node::used;
             return j;
         }
         if ((*table)[j].key == elem.key)
@@ -73,12 +72,12 @@ unsigned int Insert(vector<Node_t> *&table, Node_t elem) {
 }
 
 
-unsigned int Find(vector<Node_t> *&table, const key_t &key) {
+unsigned int Find(vector<Node> *&table, const string &key) {
     for (unsigned int i = 0; i < table->size(); ++i) {
         int j = Hash(key, i, table->size());
-        if ((*table)[j].state == Node_t::nil)
+        if ((*table)[j].state == Node::nil)
             return -1;
-        if ((*table)[j].state == Node_t::used && (*table)[j].key == key)
+        if ((*table)[j].state == Node::used && (*table)[j].key == key)
             return j;
     }
 
@@ -86,17 +85,17 @@ unsigned int Find(vector<Node_t> *&table, const key_t &key) {
 }
 
 
-bool Delete(vector<Node_t> *&table, const key_t &key) {
+bool Delete(vector<Node> *&table, const string &key) {
     unsigned int pos = Find(table, key);
     if(pos == -1)
         return false;
-    (*table)[pos].state = Node_t::deleted;
+    (*table)[pos].state = Node::deleted;
     return true;
 }
 
 
 int main() {
-    vector<Node_t> *table = new vector<Node_t>(2);
+    vector<Node> *table = new vector<Node>(2);
 
     while(1) {
         string type, key;
@@ -105,7 +104,7 @@ int main() {
             break;
         bool result = false;
         if (type == "+") {
-            result = -1 != Insert(table, Node_t(key));
+            result = -1 != Insert(table, Node(key));
         } else if (type == "?") {
             result = -1 != Find(table, key);
         } else if (type == "-") {
