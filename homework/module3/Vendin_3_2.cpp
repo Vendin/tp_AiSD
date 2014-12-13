@@ -6,9 +6,9 @@ template <typename X> struct CBinaryNode {
 	int data;
 	CBinaryNode <X> *left;
 	CBinaryNode <X> *right;
-	CBinaryNode <X> *parent;
 	CBinaryNode () {
-		left = right = parent = NULL;
+		left = NULL;
+		right = NULL;
 	}
 };
 
@@ -16,14 +16,12 @@ template <typename V> void insert (CBinaryNode <V> *root, CBinaryNode <V> *inser
  	if (root->data <= inserted->data) {
  		if (root->right == NULL) {
  			root->right = inserted;
- 			inserted->parent = root;
  		} else {
  			insert (root->right, inserted);
  		}
  	} else {
  		if (root->left == NULL) {
  			root->left = inserted;
- 			inserted->parent = root;
  		} else {
  			insert (root->left, inserted);
  		}
