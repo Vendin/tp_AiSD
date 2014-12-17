@@ -58,5 +58,11 @@ int main (void) {
 	}
 
 	inOrderTravers (Bin[0]);
+
+	for (int i = 0; i < N; ++i) {
+		delete  Bin[i];
+	}
+	delete  Bin;
+	
 	return 0;
 }
